@@ -6,9 +6,8 @@
     <meta name="viewport" content="width=\, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Heavyhire</title>
-
 </head>
-
+   
 <body>
     <div
         class="container min-h-screen bg-gradient-to-r from-cyan-500 to-blue-500 bg-center bg-cover px-28 py-5 relative">
