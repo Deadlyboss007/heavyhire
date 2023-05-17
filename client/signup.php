@@ -17,6 +17,7 @@
             <option value="1">Driver</option>
             <option value="2">User</option>
         </select>
+        <input type="submit" value="submit">
     </form>
 </body>
 </html>
