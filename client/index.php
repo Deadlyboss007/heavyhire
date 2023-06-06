@@ -10,36 +10,11 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script defer src="./assets/script.js"></script>
     <link rel="icon" type="image/x-icon" href="https://d3i4yxtzktqr9n.cloudfront.net/uber-sites/99c4bc580c8b57b7.ico" />
-    <title>Uber Clone</title>
+    <title>HeavyHire</title>
 </head>
 
 <body>
-    <header class="bg-dark">
-        <div class="container">
-            <nav>
-                <div>
-                    <a href="#" class="logo">Heavy Hire</a>
-                    <ul class="nav-links">
-                        <li><a href="#">Company</a></li>
-                        <li><a href="#">Safety</a></li>
-                        <li><a href="#">Help</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <ul id="nav-links" class="nav-links">
-                        <li><a href="#">english</a></li>
-                        <li><a href="#">Products</a></li>
-                        <li><a href="#">Log in</a></li>
-                        <li><a href="#" class="nav__cta">Sign up</a></li>
-                    </ul>
-                </div>
-                <div class="hamburger">
-                    <span class="hamburger-bar"></span><span class="hamburger-bar"></span>
-                    <span class="hamburger-bar"></span>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <?php include 'navbar.php' ?>
 
     <section id="main__cta">
         <div class="container">
@@ -153,16 +128,7 @@
         </div>
     </section>
 
-    <footer class="bg-dark">
-        <div class="container">
-            <nav>
-                <div><a href="#" class="logo">top</a></div>
-                <div>
-                    <a href="#">How Uber apps and website work</a>
-                </div>
-            </nav>
-        </div>
-    </footer>
+    <?php include 'footer.php'; ?>
     <script>
         AOS.init();
     </script>
