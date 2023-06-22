@@ -1,8 +1,8 @@
-<?php
+<?php 
 
 $con = mysqli_connect("localhost", "root", "", "heavyhire");
 
-if($con === false){ 
+if($con === true){ 
     echo "not connected"; 
 }
 

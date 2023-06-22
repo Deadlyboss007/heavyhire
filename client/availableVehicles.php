@@ -32,7 +32,14 @@
                 <img src="images/truck.jpg" class="w-[350px] h-[200px]" />
                 <div class="ml-5">
                     <h2 class="text-2xl font-bold">Ashok Leyland 3118 | 2014</h2>
-                    <p class="text-gray-800 text-xl mb-5"><i class="fa-sharp fa-solid fa-location-dot"></i> Kochi</p>
+                    <p class="text-gray-800 text-xl mb-3"><i class="fa-sharp fa-solid fa-location-dot"></i> Kochi</p>
+                    <div class="mb-5 flex">
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                    </div>
                     <p class="text-gray-800 text-lg">Available timings :-</p>
                     <ul class="list-disc ml-5">
                         <li>09:00am - 11:00am</li>
@@ -42,7 +49,8 @@
                 </div>
                 <div class="flex flex-col ml-auto">
                     <button class="rounded text-white bg-red-800 py-2 px-3 hover:bg-red-700 w-[1005] mb-5">Book</button>
-                    <button class="rounded text-white bg-blue-800 py-2 px-3 hover:bg-blue-700">Contact</button>
+                    <button class="rounded text-white bg-blue-800 py-2 px-3 hover:bg-blue-700 mb-5">Contact</button>
+                    <button class="rounded text-white bg-black py-2 px-3 hover:bg-slate-700">Message</button>
                 </div>
             </div>
             <!-- Card -->
@@ -51,7 +59,14 @@
                 <img src="images/truck.jpg" class="w-[350px] h-[200px]" />
                 <div class="ml-5">
                     <h2 class="text-2xl font-bold">Ashok Leyland 3118 | 2014</h2>
-                    <p class="text-gray-800 text-xl mb-5"><i class="fa-sharp fa-solid fa-location-dot"></i> Kochi</p>
+                    <p class="text-gray-800 text-xl mb-3"><i class="fa-sharp fa-solid fa-location-dot"></i> Kochi</p>
+                    <div class="mb-5 flex">
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                    </div>
                     <p class="text-gray-800 text-lg">Available timings :-</p>
                     <ul class="list-disc ml-5">
                         <li>09:00am - 11:00am</li>
@@ -61,7 +76,8 @@
                 </div>
                 <div class="flex flex-col ml-auto">
                     <button class="rounded text-white bg-red-800 py-2 px-3 hover:bg-red-700 w-[1005] mb-5">Book</button>
-                    <button class="rounded text-white bg-blue-800 py-2 px-3 hover:bg-blue-700">Contact</button>
+                    <button class="rounded text-white bg-blue-800 py-2 px-3 hover:bg-blue-700 mb-5">Contact</button>
+                    <button class="rounded text-white bg-black py-2 px-3 hover:bg-slate-700">Message</button>
                 </div>
             </div>
             <!-- Card -->
@@ -70,7 +86,14 @@
                 <img src="images/truck.jpg" class="w-[350px] h-[200px]" />
                 <div class="ml-5">
                     <h2 class="text-2xl font-bold">Ashok Leyland 3118 | 2014</h2>
-                    <p class="text-gray-800 text-xl mb-5"><i class="fa-sharp fa-solid fa-location-dot"></i> Kochi</p>
+                    <p class="text-gray-800 text-xl mb-3"><i class="fa-sharp fa-solid fa-location-dot"></i> Kochi</p>
+                    <div class="mb-5 flex">
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                    </div>
                     <p class="text-gray-800 text-lg">Available timings :-</p>
                     <ul class="list-disc ml-5">
                         <li>09:00am - 11:00am</li>
@@ -80,7 +103,8 @@
                 </div>
                 <div class="flex flex-col ml-auto">
                     <button class="rounded text-white bg-red-800 py-2 px-3 hover:bg-red-700 w-[1005] mb-5">Book</button>
-                    <button class="rounded text-white bg-blue-800 py-2 px-3 hover:bg-blue-700">Contact</button>
+                    <button class="rounded text-white bg-blue-800 py-2 px-3 hover:bg-blue-700 mb-5">Contact</button>
+                    <button class="rounded text-white bg-black py-2 px-3 hover:bg-slate-700">Message</button>
                 </div>
             </div>
             <!-- Card -->
@@ -89,7 +113,14 @@
                 <img src="images/truck.jpg" class="w-[350px] h-[200px]" />
                 <div class="ml-5">
                     <h2 class="text-2xl font-bold">Ashok Leyland 3118 | 2014</h2>
-                    <p class="text-gray-800 text-xl mb-5"><i class="fa-sharp fa-solid fa-location-dot"></i> Kochi</p>
+                    <p class="text-gray-800 text-xl mb-3"><i class="fa-sharp fa-solid fa-location-dot"></i> Kochi</p>
+                    <div class="mb-5 flex">
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+                    </div>
                     <p class="text-gray-800 text-lg">Available timings :-</p>
                     <ul class="list-disc ml-5">
                         <li>09:00am - 11:00am</li>
@@ -99,10 +130,12 @@
                 </div>
                 <div class="flex flex-col ml-auto">
                     <button class="rounded text-white bg-red-800 py-2 px-3 hover:bg-red-700 w-[1005] mb-5">Book</button>
-                    <button class="rounded text-white bg-blue-800 py-2 px-3 hover:bg-blue-700">Contact</button>
+                    <button class="rounded text-white bg-blue-800 py-2 px-3 hover:bg-blue-700 mb-5">Contact</button>
+                    <button class="rounded text-white bg-black py-2 px-3 hover:bg-slate-700">Message</button>
                 </div>
             </div>
             <!-- Card -->
+            
             
         </div>
     </div>

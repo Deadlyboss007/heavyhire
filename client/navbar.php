@@ -2,7 +2,7 @@
         <div class="container">
             <nav>
                 <div>
-                    <a href="#" class="logo">Heavy Hire</a>
+                    <a href="index.php" class="logo">Heavy Hire</a>
                     <ul class="nav-links">
                         <li><a href="#">Company</a></li>
                         <li><a href="#">Safety</a></li>
