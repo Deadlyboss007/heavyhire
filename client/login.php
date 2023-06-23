@@ -36,6 +36,7 @@
                 localStorage.setItem('email', data.email)
                 localStorage.setItem('name', data.name)
                 localStorage.setItem('type_id', data.type_id)
+                localStorage.setItem('acc_id', data.acc_id)
                 window.location.replace('/heavyhire/client/')
             })
             .catch(error => {

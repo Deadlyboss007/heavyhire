@@ -12,11 +12,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             if($pass_db == $pass){
                 $name_db = $row['name'];
                 $type_id = $row['type_id'];
+                $acc_id = $row['acc_id'];
                 $response = [
                     "message" => "Form submitted successfully",
                     "email" => $email,
                     "name" => $name_db,
-                    "type_id" => $type_id
+                    "type_id" => $type_id,
+                    "acc_id" => $acc_id
                 ];
 
                 header("Content-Type: application/json");
