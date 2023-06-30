@@ -1,3 +1,4 @@
+<?php include 'db/db.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,115 +29,53 @@
     <div class="px-5 py- mb-20">
         <div class="custom-shadow h-[100%] rounded-[20px]">
             <!-- Card -->
-            <div class="px-10 py-10 flex">
-                <img src="images/truck.jpg" class="w-[350px] h-[200px]" />
-                <div class="ml-5">
-                    <h2 class="text-2xl font-bold">Ashok Leyland 3118 | 2014</h2>
-                    <p class="text-gray-800 text-xl mb-3"><i class="fa-sharp fa-solid fa-location-dot"></i> Kochi</p>
-                    <div class="mb-5 flex">
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
+            <?php
+                $query = "select * from available";
+                $run = $con->query($query);
+                while($row = $run->fetch_assoc()){
+                    $Ufrom = $row['tfrom'];
+                    $from = DateTime::createFromFormat('H:i:s.u', $Ufrom)->format('H:i');
+                    $Uto = $row['tto'];
+                    $to = DateTime::createFromFormat('H:i:s.u', $Uto)->format('H:i');
+                    $v_id = $row['v_id'];
+                    $loc = $row['loc'];
+                    $query_vehicle = "select * from vehicle where v_id = $v_id";
+                    $run_vehicle = $con->query($query_vehicle);
+                    $vehicle_data = $run_vehicle->fetch_assoc();
+                    $brand = $vehicle_data['brand'];
+                    $model = $vehicle_data['model'];
+                    $phone = $row['phone'];
+                    echo "<div class='px-10 py-10 flex'>
+                    <img src='images/truck.jpg' class='w-[350px] h-[200px]' />
+                    <div class='ml-5'>
+                        <h2 class='text-2xl font-bold'>$brand $model</h2>
+                        <p class='text-gray-800 text-xl mb-3'><i class='fa-sharp fa-solid fa-location-dot'></i> $loc</p>
+                        <div class='mb-5 flex'>
+                            <i class='fa-regular fa-star text-yellow-500 cursor-pointer mr-2'></i>
+                            <i class='fa-regular fa-star text-yellow-500 cursor-pointer mr-2'></i>
+                            <i class='fa-regular fa-star text-yellow-500 cursor-pointer mr-2'></i>
+                            <i class='fa-regular fa-star text-yellow-500 cursor-pointer mr-2'></i>
+                            <i class='fa-regular fa-star text-yellow-500 cursor-pointer mr-2'></i>
+                        </div>
+                        <p class='text-gray-800 text-lg'>Available timings :-</p>
+                        <ul class='list-disc ml-5'>
+                            <li>$from am - $to am</li>
+                        </ul>
                     </div>
-                    <p class="text-gray-800 text-lg">Available timings :-</p>
-                    <ul class="list-disc ml-5">
-                        <li>09:00am - 11:00am</li>
-                        <li>18:00am - 22:00pm</li>
-                        <li>00:00am - 05:00am</li>
-                    </ul>
-                </div>
-                <div class="flex flex-col ml-auto">
-                    <button class="rounded text-white bg-red-800 py-2 px-3 hover:bg-red-700 w-[1005] mb-5">Book</button>
-                    <button class="rounded text-white bg-blue-800 py-2 px-3 hover:bg-blue-700 mb-5">Contact</button>
-                    <button class="rounded text-white bg-black py-2 px-3 hover:bg-slate-700">Message</button>
-                </div>
-            </div>
+                    <div class='flex flex-col ml-auto'>
+                        <button class='rounded text-white bg-red-800 py-2 px-3 hover:bg-red-700 w-[1005] mb-5'>Book</button>
+                        <button onclick='document.getElementById('myForm').submit();' id='contact_button' class='rounded text-white bg-blue-800 py-2 px-3 hover:bg-blue-700 mb-5'>$phone</button>
+                        <button class='rounded text-white bg-black py-2 px-3 hover:bg-slate-700'>Message</button>
+                    </div> 
+                    <!-- Hidden form to trigger PHP code on button click -->
+                    <form id='myForm' method='POST'>
+                        <input type='hidden' name='button_clicked' value='true'>
+                    </form>
+                </div>";
+                }
+
+            ?>
             <!-- Card -->
-            <!-- Card -->
-            <div class="px-10 py-10 flex">
-                <img src="images/truck.jpg" class="w-[350px] h-[200px]" />
-                <div class="ml-5">
-                    <h2 class="text-2xl font-bold">Ashok Leyland 3118 | 2014</h2>
-                    <p class="text-gray-800 text-xl mb-3"><i class="fa-sharp fa-solid fa-location-dot"></i> Kochi</p>
-                    <div class="mb-5 flex">
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
-                    </div>
-                    <p class="text-gray-800 text-lg">Available timings :-</p>
-                    <ul class="list-disc ml-5">
-                        <li>09:00am - 11:00am</li>
-                        <li>18:00am - 22:00pm</li>
-                        <li>00:00am - 05:00am</li>
-                    </ul>
-                </div>
-                <div class="flex flex-col ml-auto">
-                    <button class="rounded text-white bg-red-800 py-2 px-3 hover:bg-red-700 w-[1005] mb-5">Book</button>
-                    <button class="rounded text-white bg-blue-800 py-2 px-3 hover:bg-blue-700 mb-5">Contact</button>
-                    <button class="rounded text-white bg-black py-2 px-3 hover:bg-slate-700">Message</button>
-                </div>
-            </div>
-            <!-- Card -->
-            <!-- Card -->
-            <div class="px-10 py-10 flex">
-                <img src="images/truck.jpg" class="w-[350px] h-[200px]" />
-                <div class="ml-5">
-                    <h2 class="text-2xl font-bold">Ashok Leyland 3118 | 2014</h2>
-                    <p class="text-gray-800 text-xl mb-3"><i class="fa-sharp fa-solid fa-location-dot"></i> Kochi</p>
-                    <div class="mb-5 flex">
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
-                    </div>
-                    <p class="text-gray-800 text-lg">Available timings :-</p>
-                    <ul class="list-disc ml-5">
-                        <li>09:00am - 11:00am</li>
-                        <li>18:00am - 22:00pm</li>
-                        <li>00:00am - 05:00am</li>
-                    </ul>
-                </div>
-                <div class="flex flex-col ml-auto">
-                    <button class="rounded text-white bg-red-800 py-2 px-3 hover:bg-red-700 w-[1005] mb-5">Book</button>
-                    <button class="rounded text-white bg-blue-800 py-2 px-3 hover:bg-blue-700 mb-5">Contact</button>
-                    <button class="rounded text-white bg-black py-2 px-3 hover:bg-slate-700">Message</button>
-                </div>
-            </div>
-            <!-- Card -->
-            <!-- Card -->
-            <div class="px-10 py-10 flex">
-                <img src="images/truck.jpg" class="w-[350px] h-[200px]" />
-                <div class="ml-5">
-                    <h2 class="text-2xl font-bold">Ashok Leyland 3118 | 2014</h2>
-                    <p class="text-gray-800 text-xl mb-3"><i class="fa-sharp fa-solid fa-location-dot"></i> Kochi</p>
-                    <div class="mb-5 flex">
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
-                        <i class="fa-regular fa-star text-yellow-500 cursor-pointer mr-2"></i>
-                    </div>
-                    <p class="text-gray-800 text-lg">Available timings :-</p>
-                    <ul class="list-disc ml-5">
-                        <li>09:00am - 11:00am</li>
-                        <li>18:00am - 22:00pm</li>
-                        <li>00:00am - 05:00am</li>
-                    </ul>
-                </div>
-                <div class="flex flex-col ml-auto">
-                    <button class="rounded text-white bg-red-800 py-2 px-3 hover:bg-red-700 w-[1005] mb-5">Book</button>
-                    <button class="rounded text-white bg-blue-800 py-2 px-3 hover:bg-blue-700 mb-5">Contact</button>
-                    <button class="rounded text-white bg-black py-2 px-3 hover:bg-slate-700">Message</button>
-                </div>
-            </div>
-            <!-- Card -->
-            
-            
         </div>
     </div>
 
@@ -147,3 +86,9 @@
 </body>
 
 </html>
+
+<?php
+    if (isset($_POST['button_clicked'])) {
+        echo "<script>document.getElementById('contact_button').innerHTML = 'ss';</script>";
+    }
+?>
