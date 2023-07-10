@@ -4,25 +4,22 @@
                 <div>
                     <a href="index.php" class="logo">Heavy Hire</a>
                     <ul class="nav-links">
-                        <li><a href="#">Company</a></li>
+                        <!-- <li><a href="#">Company</a></li>
                         <li><a href="#">Safety</a></li>
-                        <li><a href="#">Help</a></li>
+                        <li><a href="#">Help</a></li> -->
                     </ul>
                 </div>
                 <div id="not_logged">
                     <ul id="nav-links" class="nav-links">
-                        <li><a href="#">english</a></li>
-                        <li><a href="#">Products</a></li>
                         <li><a href="login.php">Log in</a></li>
                         <li><a href="signup.php" class="nav__cta">Sign up</a></li>
                     </ul>
                 </div>
                 <div id="logged">
                     <ul id="nav-links" class="nav-links">
-                        <li><a href="#">english</a></li>
-                        <li><a href="#">Products</a></li>
                         <li><a href="profile.php" id="logged_name" class="nav__cta"></a></li>
                         <li><a id="logged_side_btn">View Available Vehicles</a></li>
+                        <li class="cursor-pointer"><a id="log_out">Log out</a></li>
                     </ul>
                 </div>
                 <div class="hamburger">
@@ -48,4 +45,12 @@
             document.getElementById('not_logged').style.display = 'block'
             document.getElementById('logged').style.display = 'none'
         }
+        document.getElementById('log_out').addEventListener('click', () =>{
+            localStorage.removeItem('acc_id')
+            localStorage.removeItem('type_id')
+            localStorage.removeItem('email')
+            localStorage.removeItem('name')
+            localStorage.removeItem('loggedIn')
+            window.location.reload()
+        })
     </script>

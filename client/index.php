@@ -23,7 +23,7 @@
                     <div class="split main__cta__options">
 
                         <div class="main__cta__card">
-                            <img src="https://www.uber-assets.com/image/upload/v1542256606/assets/7d/5a4852-3b2a-4466-96de-602dfb62dc1b/original/restaurant-outlined.svg"
+                        <img src="https://www.uber-assets.com/image/upload/v1542252540/assets/6d/87af17-3970-4d01-8936-1b0ba102ea6e/original/car-front-outlined.svg"
                                 alt="" />
                             top rated drivers
                         </div>
@@ -38,7 +38,7 @@
                         <p class="sous-titre">
                             register to become a driver
                         </p>
-                        <a href="#" class="btn">click here to register</a>
+                        <a href="signup.php" class="btn">click here to register</a>
 
                     </div>
                 </div>
@@ -115,13 +115,13 @@
             <h3>Find even more features in our applications</h3>
             <div class="split">
                 <a data-aos="fade-right" href="#" class="app__card">
-                    <span>Uber</span>
+                    <span>HeavyHire</span>
                     <p class="app__titre">
                         download the app for driver
                     </p>
                 </a>
                 <a data-aos="fade-left" href="#" class="app__card">
-                    <span>Uber</span>
+                    <span>HeavyHire</span>
                     <p class="app__titre">download the app for user</p>
                 </a>
             </div>
