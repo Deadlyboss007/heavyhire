@@ -1,5 +1,6 @@
 <?php
 include 'db/db.php';
+session_start();
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST['email'];
     $pass = $_POST['pass'];
@@ -20,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     "type_id" => $type_id,
                     "acc_id" => $acc_id
                 ];
-
+                $_SESSION["acc_id"] = $acc_id;
                 header("Content-Type: application/json");
                 echo json_encode($response);
             }else{
