@@ -1,8 +1,9 @@
-<header class="bg-dark">
+<?php include 'links.php' ?>
+<header class="bg-teal-950">
         <div class="container">
             <nav>
                 <div>
-                    <a href="index.php" class="logo">Heavy Hire</a>
+                    <img src="images/logo.jpg" width="100px" alt="">
                     <ul class="nav-links">
                         <!-- <li><a href="#">Company</a></li>
                         <li><a href="#">Safety</a></li>
@@ -11,15 +12,15 @@
                 </div>
                 <div id="not_logged">
                     <ul id="nav-links" class="nav-links">
-                        <li><a href="login.php">Log in</a></li>
-                        <li><a href="signup.php" class="nav__cta">Sign up</a></li>
+                        <li><a href="login.php" class="text-white">Log in</a></li>
+                        <li><a href="signup.php" class="nav__cta text-white">Sign up</a></li>
                     </ul>
                 </div>
                 <div id="logged">
                     <ul id="nav-links" class="nav-links">
-                        <li><a href="profile.php" id="logged_name" class="nav__cta"></a></li>
-                        <li><a id="logged_side_btn">View Available Vehicles</a></li>
-                        <li class="cursor-pointer"><a id="log_out">Log out</a></li>
+                        <li><a href="user/profileDashboard.php" id="logged_name" class="nav__cta"></a></li>
+                        <li><a id="logged_side_btn" class="text-white">View Available Vehicles</a></li>
+                        <li class="cursor-pointer" ><a id="log_out" class="text-white">Log out</a></li>
                     </ul>
                 </div>
                 <div class="hamburger">

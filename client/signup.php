@@ -16,6 +16,7 @@
             <option value="1">Driver</option>
             <option value="2">User</option>
         </select>
+        <input class="border-2 mb-10 py-3 rounded-[15px] px-5" type="text" placeholder="Enter phone" name="phone">
         <button type="submit" class="bg-teal-800 hover:bg-teal-900 text-white px-4 py-2 rounded-[15px] m-auto w-[30%]">Sign up</button>
     </form>
     <?php include 'footer.php' ?>

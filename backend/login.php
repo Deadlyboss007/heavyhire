@@ -22,6 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     "acc_id" => $acc_id
                 ];
                 $_SESSION["acc_id"] = $acc_id;
+                $_SESSION["name"] = $acc_id;
+                $_SESSION["email"] = $acc_id;
                 header("Content-Type: application/json");
                 echo json_encode($response);
             }else{
