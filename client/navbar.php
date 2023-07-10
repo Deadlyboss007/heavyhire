@@ -3,7 +3,7 @@
         <div class="container">
             <nav>
                 <div>
-                    <img src="images/logo.jpg" width="100px" alt="">
+                    <img src="images/logo.png" width="100px" alt="">
                     <ul class="nav-links">
                         <!-- <li><a href="#">Company</a></li>
                         <li><a href="#">Safety</a></li>
