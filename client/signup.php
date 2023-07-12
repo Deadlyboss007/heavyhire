@@ -38,7 +38,11 @@
         })
         .then(response => response.json())
             .then(data => {
-                window.location.replace('/heavyhire/client/login.php')
+                if(data.success){
+                    window.location.replace('/heavyhire/client/login.php')
+                }else{
+                    window.alert('Account already exists!')
+                }
             })
             .catch(error => {
                 console.error(error);

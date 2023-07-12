@@ -36,7 +36,8 @@
             document.getElementById('logged').style.display = 'block'
             document.getElementById('logged_name').innerHTML = localStorage.getItem('name')
             if(localStorage.getItem('type_id') == "1"){
-                document.getElementById('logged_side_btn').href = "driverDashboard.php"
+                document.getElementById('logged_name').href = "driver/driverDashboard.php"
+                document.getElementById('logged_side_btn').href = "driver/driverDashboard.php"
                 document.getElementById('logged_side_btn').innerHTML = "Dashboard"
             }else if(localStorage.getItem('type_id') == "2"){
                 document.getElementById('logged_side_btn').href = "availableVehicles.php"

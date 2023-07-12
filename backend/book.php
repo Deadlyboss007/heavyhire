@@ -5,8 +5,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $driver_id = $_POST['driver_id'];
     $pick_up = $_POST['pick_up'];
     $drop_off = $_POST['drop_off'];
-
-    $insert = "insert into book(user_id, driver_id, pick_up, drop_off) values('$user_id', '$driver_id', '$pick_up', '$drop_off')";
+    $type = 1;
+    $insert = "insert into book(user_id, driver_id, pick_up, drop_off, type) values('$user_id', '$driver_id', '$pick_up', '$drop_off', '$type')";
     $run = mysqli_query($con, $insert);
     $response = [
         "user_id" => $user_id,

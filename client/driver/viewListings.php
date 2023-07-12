@@ -1,39 +1,32 @@
-<?php include 'db/db.php'; session_start(); ?>
+<?php include '../db/db.php'; session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Heavy Hire</title>
-    <?php include 'links.php' ?>
+    <title>View Listings</title>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="stylesheet" href="style.css" />
+      <link rel="icon" href="../images/favicon.png" type="image/x-icon">
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
-    <?php include 'navbar.php'; ?>
-
-    <div class="px-5 py-5 mt-5">
-        <div class="custom-shadow h-[100px] rounded-[20px] px-10 py-8">
-            <div class="flex justify-between">
-                <input type="text" id="from" class="w-[80%] border-b text-gray-800 focus:outline-none" placeholder="From">
-                <input type="text" id="to" class="w-[80%] border-b text-gray-800 focus:outline-none" placeholder="To">
-                <select type="text" class="w-[80%] border-b text-gray-500">
-                    <option value="" class="">Select your vehicle</option>
-                    <option value="">Truck</option>   
-                    <option value="">Select your vehicle</option>
-                    <option value="">Select your vehicle</option>
-                </select>
-                <input type="time" name="" id="">
-                <button class="rounded text-white bg-green-800 py-2 px-3 hover:bg-green-700">Search</button>
-            </div>
-        </div>
-    </div>
-    <div class="px-5 py- mb-20">
+    <?php include 'sidebar.php' ?>
+    <div class="flex flex-col p-4 sm:ml-64">
         <div class="custom-shadow h-[100%] rounded-[20px]">
             <!-- Card -->
             <?php
-                $user_id = $_SESSION['acc_id'];
-                $query = "select * from available where user_id!=$user_id";
+                $driver_id = $_SESSION['acc_id'];
+                $query = "select * from available where acc_id=$driver_id";
                 $run = $con->query($query);
                 while($run && $row = $run->fetch_assoc()){
+                    $avai_id = $row['avai_id'];
                     $Ufrom = $row['tfrom'];
                     $acc_id = $row['acc_id'];
                     $from = DateTime::createFromFormat('H:i:s.u', $Ufrom)->format('H:i');
@@ -57,7 +50,7 @@
                     }
                     $rating = floor($sumStars / $run_allStars->num_rows);
                         echo "<div class='px-10 py-10 flex'>
-                        <img src='../backend/availableImages/$image' class='w-[350px] h-[200px]' />
+                        <img src='../../backend/availableImages/$image' class='w-[350px] h-[200px]' />
                         <div class='ml-5'>
                             <h2 class='text-2xl font-bold'>$brand $model</h2>
                             <p class='text-gray-800 text-xl mb-3'><i class='fa-sharp fa-solid fa-location-dot'></i> $loc</p>
@@ -76,12 +69,12 @@
                             </ul>
                         </div>
                         <div class='flex flex-col ml-auto'>
-                            <form id='book_button'>
-                                <input type='hidden' name='driver_id' value=$acc_id>
-                                <button type='submit' class='rounded text-white bg-red-800 py-2 px-3 hover:bg-red-700 w-[1005] mb-5'>Book</button>
+                            <form id='edit'>
+                                <input type='hidden' name='avai_id' value=$avai_id>
+                                <a href='editListing.php?avai_id=$avai_id' type='submit' class='rounded text-white bg-green-800 py-2 px-3 hover:bg-green-700 w-[1005] mb-5'>Edit</a>
                             </form>
                             <button onclick='document.getElementById('myForm').submit();' id='contact_button' class='rounded text-white bg-blue-800 py-2 px-3 hover:bg-blue-700 mb-5'>$phone</button>
-                            <button class='rounded text-white bg-black py-2 px-3 hover:bg-slate-700'>Message</button>
+                            <!--<button class='rounded text-white bg-black py-2 px-3 hover:bg-slate-700'>Message</button>-->
                         </div> 
                         <!-- Hidden form to trigger PHP code on button click -->
                         <form id='myForm' method='POST'>
@@ -93,8 +86,6 @@
             <!-- Card -->
         </div>
     </div>
-
-    <?php include 'footer.php'; ?>
     <script>
         AOS.init();
     </script>
@@ -104,31 +95,31 @@
 
 <script>
 
-    const form = document.querySelector("#book_button");
-    form.addEventListener("submit", (e) => {
-        const driver_id = form.querySelector("input").value
-        const pick_up = document.querySelector("#from").value
-        const drop_off = document.querySelector("#to").value
-        e.preventDefault();
-        console.log(driver_id, pick_up, drop_off, localStorage.getItem('acc_id'))
-        const data = new FormData();
-        data.append('user_id', localStorage.getItem('acc_id'));
-        data.append('driver_id', driver_id);
-        data.append('pick_up', pick_up);
-        data.append('drop_off', drop_off);
-        fetch("../backend/book.php", {
-            method: "POST",
-            body: data
-        })
-        .then(response => response.json())
-            .then(data => {
-                window.location.replace('/heavyhire/client/user/booked.php')
-            })
-            .catch(error => {
-                console.error(error);
-            });
-        console.log(data)
-    })
+    // const form = document.querySelector("#edit");
+    // form.addEventListener("submit", (e) => {
+    //     const driver_id = form.querySelector("input").value
+    //     const pick_up = document.querySelector("#from").value
+    //     const drop_off = document.querySelector("#to").value
+    //     e.preventDefault();
+    //     console.log(driver_id, pick_up, drop_off, localStorage.getItem('acc_id'))
+    //     const data = new FormData();
+    //     data.append('user_id', localStorage.getItem('acc_id'));
+    //     data.append('driver_id', driver_id);
+    //     data.append('pick_up', pick_up);
+    //     data.append('drop_off', drop_off);
+    //     fetch("../backend/book.php", {
+    //         method: "POST",
+    //         body: data
+    //     })
+    //     .then(response => response.json())
+    //         .then(data => {
+    //             window.location.replace('/heavyhire/client/user/booked.php')
+    //         })
+    //         .catch(error => {
+    //             console.error(error);
+    //         });
+    //     console.log(data)
+    // })
 </script>
 
 <?php
