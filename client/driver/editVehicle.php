@@ -1,6 +1,15 @@
 <?php 
     include '../db/db.php';
     session_start();
+    $v_id = $_GET['v_id'];
+    $getVehicle = "select * from vehicle where v_id=$v_id";
+    $runVehicle = $con->query($getVehicle);
+    $fetchVehicle = $runVehicle->fetch_assoc();
+    $brand = $fetchVehicle['brand'];
+    $model = $fetchVehicle['model'];
+    $insurance = $fetchVehicle['insurance'];
+    $reg_no = $fetchVehicle['reg_no'];
+    $exp_date = $fetchVehicle['exp_date'];
 ?>
 
 <!DOCTYPE html>
@@ -17,34 +26,20 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     
-    <title>Upload Availability</title>
+    <title>Edit Vehicle</title>
 </head>
 <body>
     <?php include 'sidebar.php' ?>
     <form class="flex flex-col p-4 sm:ml-64" method="POST" enctype="multipart/form-data">
-        <select name="v_id" class="border-2 mb-10 py-3 rounded-[15px] px-5" id="">
-            <option>--Select a vehicle--</option>
-            <?php
-                $acc_id = $_SESSION['acc_id'];
-                $get_user_vehicles = "select * from vehicle where acc_id=$acc_id";
-                $run_user_vehicles = $con->query($get_user_vehicles);
-                while($row = $run_user_vehicles->fetch_assoc()){
-                    $brand = $row['brand'];
-                    $model = $row['model'];
-                    $v_id = $row['v_id'];
-                    echo "<option value='$v_id'>$brand $model</option>";
-                }
-            ?>
-        </select>
-        <input class="hidden" type="text" id="acc_id" name="acc_id">
-        <input value="Kochi" class="border-2 mb-10 py-3 rounded-[15px] px-5" type="text" placeholder="Enter location" name="loc">
+        <input class="hidden" type="text" id="v_id" name="v_id" value="<?php echo $v_id; ?>">
+        <input class="border-2 mb-10 py-3 rounded-[15px] px-5" type="text" value="<?php echo $brand; ?>" placeholder="Enter Brand" name="brand">
+        <input class="border-2 mb-10 py-3 rounded-[15px] px-5" type="text" value="<?php echo $model; ?>" placeholder="Enter Model" name="model">
         <div class="flex">
-            <input class="border-2 mb-10 py-3 rounded-[15px] px-5 w-[50%]" value="09:45" type="time" name="tfrom">
-            <input class="border-2 mb-10 py-3 rounded-[15px] px-5 w-[50%]" value="10:30" type="time" name="tto">
+            <input placeholder="Enter register no" class="border-2 mb-10 py-3 rounded-[15px] px-5 w-[50%]" value="<?php echo $reg_no; ?>" type="number" name="reg_no">
+            <input class="border-2 mb-10 py-3 rounded-[15px] px-5 w-[50%]" type="date" value="<?php echo $exp_date; ?>" name="exp_date">
         </div>
-        <input value="+919778393558" class="border-2 mb-10 py-3 rounded-[15px] px-5" type="text" placeholder="Enter Phone" name="phone">
-        <input class="border-2 mb-10 py-3 rounded-[15px] px-5" type="file" name="image">
-        <button type="submit" class="bg-teal-800 hover:bg-teal-900 text-white px-4 py-2 rounded-[15px] m-auto w-[30%]">Upload</button>
+        <input class="border-2 mb-10 py-3 rounded-[15px] px-5 w-[50%]" type="number" value="<?php echo $insurance; ?>" name="insurance">
+        <button type="submit" class="bg-teal-800 hover:bg-teal-900 text-white px-4 py-2 rounded-[15px] m-auto w-[30%]">Confirm Edit</button>
     </form>
 </body>
 </html>
@@ -52,19 +47,18 @@
 <script>
 
     const form = document.querySelector("form");
-    document.getElementById('acc_id').value = localStorage.getItem('acc_id')
     form.addEventListener("submit", (e) => {
         e.preventDefault();
 
         const formData = new FormData(form);
 
-        fetch("../../backend/uploadAvailability.php", {
+        fetch("../../backend/editVehicle.php", {
             method: "POST",
             body: formData
         })
         .then(response => response.json())
             .then(data => {
-                window.location.replace('/heavyhire/client/driver/driverDashboard.php')
+                window.location.replace('/heavyhire/client/driver/viewVehicles.php')
                 console.log(data)
             })
             .catch(error => {

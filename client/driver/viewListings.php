@@ -7,7 +7,7 @@
       <meta charset="UTF-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="stylesheet" href="style.css" />
+      <link rel="stylesheet" href="../style.css" />
       <link rel="icon" href="../images/favicon.png" type="image/x-icon">
       <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
       <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -19,7 +19,6 @@
 <body>
     <?php include 'sidebar.php' ?>
     <div class="flex flex-col p-4 sm:ml-64">
-        <div class="custom-shadow h-[100%] rounded-[20px]">
             <!-- Card -->
             <?php
                 $driver_id = $_SESSION['acc_id'];
@@ -49,7 +48,7 @@
                         $sumStars += $row_star['rating'];
                     }
                     $rating = floor($sumStars / $run_allStars->num_rows);
-                        echo "<div class='px-10 py-10 flex'>
+                        echo "<div class='custom-shadow h-[100%] rounded-[20px] mb-10'><div class='px-10 py-10 flex'>
                         <img src='../../backend/availableImages/$image' class='w-[350px] h-[200px]' />
                         <div class='ml-5'>
                             <h2 class='text-2xl font-bold'>$brand $model</h2>
@@ -80,11 +79,10 @@
                         <form id='myForm' method='POST'>
                             <input type='hidden' name='button_clicked' value='true'>
                         </form>
-                    </div>";
+                    </div></div>";
                 }
             ?>
             <!-- Card -->
-        </div>
     </div>
     <script>
         AOS.init();
