@@ -20,6 +20,7 @@
                     <ul id="nav-links" class="nav-links">
                         <li><a href="user/profileDashboard.php" id="logged_name" class="nav__cta"></a></li>
                         <li><a id="logged_side_btn" class="text-white">View Available Vehicles</a></li>
+                        <li><a href="leaderBoard.php" id="leaderboard" class="text-white"></a></li>
                         <li class="cursor-pointer" ><a id="log_out" class="text-white">Log out</a></li>
                     </ul>
                 </div>
@@ -42,6 +43,8 @@
             }else if(localStorage.getItem('type_id') == "2"){
                 document.getElementById('logged_side_btn').href = "availableVehicles.php"
                 document.getElementById('logged_side_btn').innerHTML = "View available vehicles"
+                document.getElementById('leaderboard').innerHTML = "Leaderboard"
+                document.getElementById('leaderboard').style.display = "block"
             }
         }else{
             document.getElementById('not_logged').style.display = 'block'

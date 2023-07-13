@@ -31,9 +31,10 @@
             <!-- Card -->
             <?php
                 $user_id = $_SESSION['acc_id'];
-                $query = "select * from available where user_id!=$user_id";
+                $query = "select * from available";
                 $run = $con->query($query);
                 while($run && $row = $run->fetch_assoc()){
+                    $avai_id = $row['avai_id'];
                     $Ufrom = $row['tfrom'];
                     $acc_id = $row['acc_id'];
                     $from = DateTime::createFromFormat('H:i:s.u', $Ufrom)->format('H:i');
@@ -56,6 +57,9 @@
                         $sumStars += $row_star['rating'];
                     }
                     $rating = floor($sumStars / $run_allStars->num_rows);
+                    $checkBooked = "select * from book where user_id=$user_id AND avai_id=$avai_id";
+                    $runCheckBooked = $con->query($checkBooked);
+                    if($runCheckBooked->num_rows == 0){
                         echo "<div class='px-10 py-10 flex'>
                         <img src='../backend/availableImages/$image' class='w-[350px] h-[200px]' />
                         <div class='ml-5'>
@@ -77,6 +81,7 @@
                         </div>
                         <div class='flex flex-col ml-auto'>
                             <form id='book_button'>
+                                <input type='hidden' name='avai_id' value=$avai_id>
                                 <input type='hidden' name='driver_id' value=$acc_id>
                                 <button type='submit' class='rounded text-white bg-red-800 py-2 px-3 hover:bg-red-700 w-[1005] mb-5'>Book</button>
                             </form>
@@ -88,6 +93,7 @@
                             <input type='hidden' name='button_clicked' value='true'>
                         </form>
                     </div>";
+                    }
                 }
             ?>
             <!-- Card -->
@@ -112,6 +118,7 @@
         e.preventDefault();
         console.log(driver_id, pick_up, drop_off, localStorage.getItem('acc_id'))
         const data = new FormData();
+        data.append('avai_id', localStorage.getItem('avai_id'));
         data.append('user_id', localStorage.getItem('acc_id'));
         data.append('driver_id', driver_id);
         data.append('pick_up', pick_up);
