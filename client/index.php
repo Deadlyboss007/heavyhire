@@ -53,7 +53,7 @@
             <h3>Wherever you go, your safety is our priority</h3>
             <div class="split">
                 <div class="engagements__section__flex">
-                    <img src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_558,h_372/v1613520218/assets/3e/e98625-31e6-4536-8646-976a1ee3f210/original/Safety_Home_Img2x.png"
+                    <img src="images/pexels-world-sikh-organization-of-canada-14797990.jpg"
                         alt="" />
                     <h4>Our commitment to your safety</h4>
                     <p class="sous-titre">
@@ -63,7 +63,7 @@
 
                 </div>
                 <div class="engagements__section__flex">
-                    <img src="https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_558,h_372/v1613520285/assets/c2/91ea9c-90d7-4c36-a740-d7844536694e/original/Cities_Home_Img2x.png"
+                    <img src="images/pexels-ivan-188679.jpg"
                         alt="" />
                     <h4>top rated drivers at your fingertip</h4>
                     <p class="sous-titre">

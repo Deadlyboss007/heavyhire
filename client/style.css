@@ -197,11 +197,12 @@ header nav div:first-of-type {
 section#main__cta {
     padding-block: 4rem;
 
-    background-image: url("https://www.uber-assets.com/image/upload/f_auto,q_auto:eco,c_fill,w_630,h_354/v1653688498/assets/2c/3833ca-a2eb-4da4-9879-51193ea88f87/original/DotCom_Update_Earner_bg_med2x.jpg");
+    background-image: url("images/pexels-darwis-alwan-1635065.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 }
+
 
 .main__cta__rectangle {
     display: flex;
