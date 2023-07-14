@@ -42,7 +42,7 @@
                     </div>
                     <form id='delete_button' class='px-10 py-10 flex flex-col'>
                         <a href='editVehicle.php?v_id=$v_id' class='rounded text-white bg-blue-500 hover:bg-blue-700 px-5 py-2 mb-5 cursor-pointer text-center'>Edit</a>
-                        <button type='submit' class='rounded text-white bg-red-500 hover:bg-red-700 px-5 py-2 text-center'>Delete</button>
+                        <button onclick='runDelete(event, $v_id)' class='rounded text-white bg-red-500 hover:bg-red-700 px-5 py-2 text-center'>Delete</button>
                     </form>
                 </div></div>";
                 }
@@ -57,22 +57,20 @@
 </html>
 
 <script>
-
-    const form = document.querySelector("#delete_button");
-    form.addEventListener("submit", (e) => {
-        fetch("../backend/book.php", {
-            method: "POST",
-            body: data
+    const deleteBtn = document.querySelector('.delete_btn')
+    const runDelete = (event, v_id) => {
+        event.preventDefault()
+        fetch(`../../backend/deleteVehicle.php?v_id=${v_id}`, {
+            method: "DELETE"
         })
         .then(response => response.json())
             .then(data => {
-                window.location.replace('/heavyhire/client/user/booked.php')
+                window.location.replace('/heavyhire/client/driver/viewVehicles.php')
             })
             .catch(error => {
                 console.error(error);
             });
-        console.log(data)
-    })
+    }
 </script>
 
 <?php

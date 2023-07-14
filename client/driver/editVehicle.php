@@ -30,6 +30,9 @@
 </head>
 <body>
     <?php include 'sidebar.php' ?>
+    <div class="p-4 sm:ml-64">
+        <a href="viewVehicles.php" class="bg-green-700 hover:bg-green-800 text-white px-3 py-2 rounded">Back</a>
+    </div>
     <form class="flex flex-col p-4 sm:ml-64" method="POST" enctype="multipart/form-data">
         <input class="hidden" type="text" id="v_id" name="v_id" value="<?php echo $v_id; ?>">
         <input class="border-2 mb-10 py-3 rounded-[15px] px-5" type="text" value="<?php echo $brand; ?>" placeholder="Enter Brand" name="brand">

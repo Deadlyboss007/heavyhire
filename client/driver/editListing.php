@@ -42,7 +42,7 @@
 <body>
     <?php include 'sidebar.php' ?>
     <div class="p-4 sm:ml-64">
-        <a href="viewVehicle.php" class="bg-green-700 hover:bg-green-800 text-white px-3 py-2 rounded">Back</a>
+        <a href="viewListings.php" class="bg-green-700 hover:bg-green-800 text-white px-3 py-2 rounded">Back</a>
     </div>
     <form class="flex flex-col p-4 sm:ml-64" method="POST" enctype="multipart/form-data">
         <input type="text" name="avai_id" value="<?php echo $avai_id ?>" class="hidden" id="">

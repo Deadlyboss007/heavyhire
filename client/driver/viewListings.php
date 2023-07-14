@@ -90,38 +90,3 @@
 </body>
 
 </html>
-
-<script>
-
-    // const form = document.querySelector("#edit");
-    // form.addEventListener("submit", (e) => {
-    //     const driver_id = form.querySelector("input").value
-    //     const pick_up = document.querySelector("#from").value
-    //     const drop_off = document.querySelector("#to").value
-    //     e.preventDefault();
-    //     console.log(driver_id, pick_up, drop_off, localStorage.getItem('acc_id'))
-    //     const data = new FormData();
-    //     data.append('user_id', localStorage.getItem('acc_id'));
-    //     data.append('driver_id', driver_id);
-    //     data.append('pick_up', pick_up);
-    //     data.append('drop_off', drop_off);
-    //     fetch("../backend/book.php", {
-    //         method: "POST",
-    //         body: data
-    //     })
-    //     .then(response => response.json())
-    //         .then(data => {
-    //             window.location.replace('/heavyhire/client/user/booked.php')
-    //         })
-    //         .catch(error => {
-    //             console.error(error);
-    //         });
-    //     console.log(data)
-    // })
-</script>
-
-<?php
-    if (isset($_POST['button_clicked'])) {
-        echo "<script>document.getElementById('contact_button').innerHTML = 'ss';</script>";
-    }
-?>
