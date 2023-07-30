@@ -6,6 +6,7 @@
 <html>
 
 <head>
+    <title>Booked</title>
     <?php include '../links.php' ?>
     <link rel="icon" href="../images/favicon.png" type="image/x-icon">
 </head>
@@ -35,6 +36,7 @@
                         while($fetch_previous = $run_previous->fetch_assoc()){
                             $driver_id = $fetch_previous['driver_id'];
                             $pick_up = $fetch_previous['pick_up'];
+                            $avai_id = $fetch_previous['avai_id'];
                             $drop_off = $fetch_previous['drop_off'];
 
 
@@ -50,10 +52,15 @@
                             $brand = $fetch_vehicle['brand'];
                             $model = $fetch_vehicle['model'];
 
+                            $get_avai = "select * from available where avai_id=$avai_id";
+                            $run_avai = $con->query($get_avai);
+                            $fetch_avai = $run_avai->fetch_assoc();
+                            $image = $fetch_avai['image'];
+
                             echo "
                             <div class='max-w-sm mt-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
                                 <a href='#'>
-                                    <img class='rounded-t-lg' src='yellow-digger-with-smile-cast-shadow_3442-2338.avif' alt='img' />
+                                    <img class='rounded-t-lg h-80 w-full' src='../../backend/availableImages/$image' alt='img' />
                                 </a>
                                 <div class='p-5'>
                                     <a href='#'>
@@ -76,6 +83,8 @@
                         $get_previous = "select * from book where type=1";
                         $run_previous = $con->query($get_previous);
                         while($fetch_previous = $run_previous->fetch_assoc()){
+                            $book_id = $fetch_previous['book_id'];
+                            $avai_id = $fetch_previous['avai_id'];
                             $driver_id = $fetch_previous['driver_id'];
                             $pick_up = $fetch_previous['pick_up'];
                             $drop_off = $fetch_previous['drop_off'];
@@ -93,15 +102,14 @@
                             $brand = $fetch_vehicle['brand'];
                             $model = $fetch_vehicle['model'];
 
-                            $get_avai = "select * from available where acc_id=$driver_id";
+                            $get_avai = "select * from available where avai_id=$avai_id";
                             $run_avai = $con->query($get_avai);
                             $fetch_avai = $run_avai->fetch_assoc();
                             $image = $fetch_avai['image'];
                             echo "
                             <div class='max-w-sm mt-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
                                 <a href='#'>
-                                    <!--<img class='rounded-t-lg' src='../../backend/availableImages/$image' alt='img' />-->
-                                    <img class='rounded-t-lg' src='../images/truck.jpg' alt='img' />
+                                    <img class='rounded-t-lg h-80 w-full' src='../../backend/availableImages/$image' alt='img' />
                                 </a>
                                 <div class='p-5'>
                                     <a href='#'>
@@ -112,9 +120,9 @@
                                         <li class='font-normal text-gray-700 dark:text-gray-400'>From: $pick_up</li>  
                                         <li class='font-normal text-gray-700 dark:text-gray-400'>To: $drop_off</li>  
                                     </ul>
-                                    <a href='#'
+                                    <button onclick='cancelBooking($book_id)'
                                     class='inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800'>
-                                    cancel</a>
+                                    cancel</button>
                                 </div>
                             </div>
                             ";
@@ -130,6 +138,7 @@
                             $driver_id = $fetch_previous['driver_id'];
                             $pick_up = $fetch_previous['pick_up'];
                             $drop_off = $fetch_previous['drop_off'];
+                            $avai_id = $fetch_previous['avai_id'];
 
 
                             $get_driver = "select * from accounts where acc_id=$driver_id";
@@ -144,10 +153,15 @@
                             $brand = $fetch_vehicle['brand'];
                             $model = $fetch_vehicle['model'];
 
+                            $get_avai = "select * from available where avai_id=$avai_id";
+                            $run_avai = $con->query($get_avai);
+                            $fetch_avai = $run_avai->fetch_assoc();
+                            $image = $fetch_avai['image'];
+
                             echo "
                             <div class='max-w-sm mt-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
                                 <a href='#'>
-                                    <img class='rounded-t-lg' src='yellow-digger-with-smile-cast-shadow_3442-2338.avif' alt='img' />
+                                    <img class='rounded-t-lg h-80 w-full' src='../../backend/availableImages/$image' alt='img' />
                                 </a>
                                 <div class='p-5'>
                                     <a href='#'>
@@ -168,5 +182,29 @@
 
 
 </body>
+<script>
+    function cancelBooking(book_id){
+        console.log(book_id)
+        var xhr = new XMLHttpRequest();
 
+        xhr.open('GET', `http://localhost/heavyhire/backend/mark.php?book_id=${book_id}&type=2`, true);
+
+        xhr.onload = function() {
+        if (xhr.status >= 200 && xhr.status < 300) {
+            var responseData = JSON.parse(xhr.responseText);
+            console.log(responseData);
+            window.location.reload()
+        } else {
+            console.error('Request failed with status:', xhr.status);
+            window.location.reload()
+        }
+        };
+
+        xhr.onerror = function() {
+        console.error('Network error occurred');
+        };
+
+        xhr.send();
+    }
+</script>
 </html>

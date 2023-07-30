@@ -37,7 +37,33 @@
             ?>
         </select>
         <input class="hidden" type="text" id="acc_id" name="acc_id">
-        <input value="Kochi" class="border-2 mb-10 py-3 rounded-[15px] px-5" type="text" placeholder="Enter location" name="loc">
+        <select class="border-2 mb-10 py-3 rounded-[15px] px-5" type="text" name="from_id">
+            <option>--From--</option>
+            <?php
+                $get_loc = "select * from loc";
+                $run_loc = $con->query($get_loc);
+                while($row = $run_loc->fetch_assoc()){
+                    $loc_id = $row['loc_id'];
+                    $loc_name = $row['loc_name'];
+                
+                    echo "<option value='$loc_id'>$loc_name</option>";
+                }
+            ?>
+        </select>
+        <select class="border-2 mb-10 py-3 rounded-[15px] px-5" type="text" name="to_id">
+            <option>--To--</option>
+            <?php
+                $get_loc = "select * from loc";
+                $run_loc = $con->query($get_loc);
+                while($row = $run_loc->fetch_assoc()){
+                    $loc_id = $row['loc_id'];
+                    $loc_name = $row['loc_name'];
+                
+                    echo "<option value='$loc_id'>$loc_name</option>";
+                }
+            ?>
+        </select>
+        <!-- <input value="Kochi" class="border-2 mb-10 py-3 rounded-[15px] px-5" type="text" placeholder="Enter location" name="loc"> -->
         <div class="flex">
             <input class="border-2 mb-10 py-3 rounded-[15px] px-5 w-[50%]" value="09:45" type="time" name="tfrom">
             <input class="border-2 mb-10 py-3 rounded-[15px] px-5 w-[50%]" value="10:30" type="time" name="tto">

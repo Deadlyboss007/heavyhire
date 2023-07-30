@@ -85,7 +85,7 @@
             })
             .then(response => response.json())
                 .then(data => {
-                    window.location.replace('/heavyhire/client/driver/viewClients.php')
+                    window.location.reload()
                     // console.log('done')
                 })
                 .catch(error => {

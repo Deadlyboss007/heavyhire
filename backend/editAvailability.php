@@ -4,7 +4,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $avai_id = $_POST['avai_id'];
     $v_id = $_POST['v_id'];
     $acc_id = $_POST['acc_id'];
-    $loc = $_POST['loc'];
+    $from_id = $_POST['from_id'];
+    $to_id = $_POST['to_id'];
     $tfrom = $_POST['tfrom'];
     $tto = $_POST['tto'];
     $phone = $_POST['phone'];
@@ -17,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     }
     
 
-    $insert = "UPDATE available SET v_id = '$v_id', acc_id = '$acc_id', loc = '$loc', tfrom = '$tfrom', tto = '$tto', phone = '$phone', image = '$image' WHERE avai_id = $avai_id";
+    $insert = "UPDATE available SET v_id = '$v_id', acc_id = '$acc_id', from_id = '$from_id', to_id = '$to_id', tfrom = '$tfrom', tto = '$tto', phone = '$phone', image = '$image' WHERE avai_id = $avai_id";
     $run = mysqli_query($con, $insert);
     $response = [
         "message" => "Form submitted successfully",

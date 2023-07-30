@@ -17,9 +17,19 @@
         $from = DateTime::createFromFormat('H:i:s.u', $Ufrom)->format('H:i');
         $Uto = $row['tto'];
         $to = DateTime::createFromFormat('H:i:s.u', $Uto)->format('H:i');
-        $loc = $row['loc'];
         $phone = $row['phone'];
         $image = $row['image'];
+
+        $from_id = $row['from_id'];
+        $to_id = $row['to_id'];
+        $q_from = "select * from loc where loc_id = $from_id";
+        $q_to = "select * from loc where loc_id = $to_id";
+        $run_from = $con->query($q_from);
+        $run_to = $con->query($q_to);
+        $fetch_from = $run_from->fetch_assoc();
+        $fetch_to = $run_to->fetch_assoc();
+        $from_loc = $fetch_from['loc_name'];
+        $to_loc = $fetch_to['loc_name'];
     }
 ?>
 
@@ -62,7 +72,32 @@
             ?>
         </select>
         <input class="hidden" type="text" id="acc_id" name="acc_id">
-        <input value="<?php echo $loc; ?>" class="border-2 mb-10 py-3 rounded-[15px] px-5" type="text" placeholder="Enter location" name="loc">
+        <select class="border-2 mb-10 py-3 rounded-[15px] px-5" type="text" name="from_id">
+            <?php
+                echo "<option value='$from_id' selected>$from_loc</option>";
+                $get_loc = "select * from loc where loc_id != $from_id";
+                $run_loc = $con->query($get_loc);
+                while($row = $run_loc->fetch_assoc()){
+                    $loc_id = $row['loc_id'];
+                    $loc_name = $row['loc_name'];
+                
+                    echo "<option value='$loc_id'>$loc_name</option>";
+                }
+            ?>
+        </select>
+        <select class="border-2 mb-10 py-3 rounded-[15px] px-5" type="text" name="to_id">
+            <?php
+                echo "<option value='$to_id' selected>$to_loc</option>";
+                $get_loc = "select * from loc where loc_id != $to_id";
+                $run_loc = $con->query($get_loc);
+                while($row = $run_loc->fetch_assoc()){
+                    $loc_id = $row['loc_id'];
+                    $loc_name = $row['loc_name'];
+                
+                    echo "<option value='$loc_id'>$loc_name</option>";
+                }
+            ?>
+        </select>
         <div class="flex">
             <input class="border-2 mb-10 py-3 rounded-[15px] px-5 w-[50%]" value="<?php echo $from; ?>" type="time" name="tfrom">
             <input class="border-2 mb-10 py-3 rounded-[15px] px-5 w-[50%]" value="<?php echo $to; ?>" type="time" name="tto">

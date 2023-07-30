@@ -32,7 +32,6 @@
                     $Uto = $row['tto'];
                     $to = DateTime::createFromFormat('H:i:s.u', $Uto)->format('H:i');
                     $v_id = $row['v_id'];
-                    $loc = $row['loc'];
                     $query_vehicle = "select * from vehicle where v_id = $v_id";
                     $run_vehicle = $con->query($query_vehicle);
                     $vehicle_data = $run_vehicle->fetch_assoc();
@@ -40,6 +39,17 @@
                     $model = $vehicle_data['model'];
                     $phone = $row['phone'];
                     $image = $row['image'];
+
+                    $from_id = $row['from_id'];
+                    $to_id = $row['to_id'];
+                    $q_from = "select * from loc where loc_id = $from_id";
+                    $q_to = "select * from loc where loc_id = $to_id";
+                    $run_from = $con->query($q_from);
+                    $run_to = $con->query($q_to);
+                    $fetch_from = $run_from->fetch_assoc();
+                    $fetch_to = $run_to->fetch_assoc();
+                    $from_loc = $fetch_from['loc_name'];
+                    $to_loc = $fetch_to['loc_name'];
 
                     $allStars = "select * from rating where acc_id = $acc_id";
                     $run_allStars = $con->query($allStars);
@@ -51,16 +61,19 @@
                         echo "<div class='custom-shadow h-[100%] rounded-[20px] mb-10'><div class='px-10 py-10 flex'>
                         <img src='../../backend/availableImages/$image' class='w-[350px] h-[200px]' />
                         <div class='ml-5'>
-                            <h2 class='text-2xl font-bold'>$brand $model</h2>
-                            <p class='text-gray-800 text-xl mb-3'><i class='fa-sharp fa-solid fa-location-dot'></i> $loc</p>
-                            <div class='mb-5 flex'>";
-                        for($i=1; $i<=$rating; $i++){
-                            echo "<i class='fa-solid fa-star text-yellow-500 cursor-pointer mr-2'></i>";
-                        }
-                        for($i=1;$i<=5-$rating; $i++){
-                            echo "<i class='fa-regular fa-star text-yellow-500 cursor-pointer mr-2'></i>";
-                        }
-                        echo "
+                            <h2 class='text-2xl font-bold'>$brand $model</h2>";
+                            for($i=1; $i<=$rating; $i++){
+                                echo "<i class='fa-solid fa-star text-yellow-500 cursor-pointer mr-2'></i>";
+                            }
+                            for($i=1;$i<=5-$rating; $i++){
+                                echo "<i class='fa-regular fa-star text-yellow-500 cursor-pointer mr-2'></i>";
+                            }
+                            echo "
+                            <p class='text-gray-800 text-lg'>Locations :-</p>
+                            <ul class='list-disc ml-5'>
+                                <li>$from_loc - $to_loc</li>
+                            </ul>
+                            <div class='mb-5 flex'>
                             </div>
                             <p class='text-gray-800 text-lg'>Available timings :-</p>
                             <ul class='list-disc ml-5'>
