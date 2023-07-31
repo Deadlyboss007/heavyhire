@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jul 31, 2023 at 10:29 AM
+-- Generation Time: Jul 31, 2023 at 03:46 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.0
 
@@ -41,7 +41,7 @@ CREATE TABLE `accounts` (
 --
 
 INSERT INTO `accounts` (`acc_id`, `email`, `pass`, `type_id`, `name`, `phone`) VALUES
-(1, 'abhinav@gmail.com', 'abhinav', 2, 'Abhinav', ''),
+(1, 'abhinav@gmail.com', 'abhinav', 2, 'Abhinav', '+919778393558'),
 (2, 'abhinavcv007@gmail.com', 'Abhinav7zz!', 2, 'Abhinav C V', ''),
 (3, 'jishnu@gmail.com', 'jishnu', 2, 'ishnu', ''),
 (4, 'jishnu@gmail.com', 'jishnu', 2, 'ishnu', ''),
@@ -82,7 +82,10 @@ CREATE TABLE `available` (
 --
 
 INSERT INTO `available` (`avai_id`, `acc_id`, `v_id`, `from_id`, `to_id`, `tfrom`, `tto`, `phone`, `image`) VALUES
-(14, 5, 3, 1, 9, '09:45:00.000000', '10:30:00.000000', '+919778393558', 'Screenshot 2023-06-15 141911.png');
+(16, 5, 3, 1, 12, '09:45:00.000000', '10:30:00.000000', '+919778393558', 'istockphoto-859916128-612x612.jpg'),
+(17, 5, 3, 14, 19, '09:45:00.000000', '10:30:00.000000', '+919778393558', 'istockphoto-1156528620-612x612.jpg'),
+(18, 5, 3, 11, 17, '09:45:00.000000', '10:30:00.000000', '+919778393558', 'istockphoto-1284419710-612x612.jpg'),
+(19, 5, 3, 8, 13, '09:45:00.000000', '10:30:00.000000', '+919778393558', 'istockphoto-1355096028-170667a.webp');
 
 -- --------------------------------------------------------
 
@@ -105,7 +108,52 @@ CREATE TABLE `book` (
 --
 
 INSERT INTO `book` (`book_id`, `avai_id`, `user_id`, `driver_id`, `pick_up`, `drop_off`, `type`) VALUES
-(27, 14, 1, 5, '', '', 0);
+(33, 16, 1, 5, '', '', 0),
+(34, 17, 1, 5, '', '', 2),
+(35, 18, 1, 5, '', '', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chat`
+--
+-- Error reading structure for table heavyhire.chat: #1932 - Table 'heavyhire.chat' doesn't exist in engine
+-- Error reading data for table heavyhire.chat: #1064 - You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'FROM `heavyhire`.`chat`' at line 1
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chats`
+--
+
+CREATE TABLE `chats` (
+  `chatid` int(11) NOT NULL,
+  `sender_acc_id` int(11) NOT NULL,
+  `reciever_acc_id` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` int(1) NOT NULL,
+  `sender_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `chats`
+--
+
+INSERT INTO `chats` (`chatid`, `sender_acc_id`, `reciever_acc_id`, `message`, `timestamp`, `status`, `sender_name`) VALUES
+(43, 1, 5, 'hi', '2023-07-31 09:39:46', 1, 'Abhinav'),
+(44, 1, 5, 'hello', '2023-07-31 09:48:02', 1, 'Abhinav'),
+(45, 1, 5, 'yolo', '2023-07-31 09:48:23', 1, 'Abhinav'),
+(46, 0, 1, 'hi', '2023-07-31 09:55:02', 1, 'null'),
+(47, 0, 1, 'hello', '2023-07-31 09:55:07', 1, 'null'),
+(48, 5, 1, 'hi im abbas', '2023-07-31 09:56:19', 1, 'abbas'),
+(49, 1, 5, 'hello again', '2023-07-31 11:39:34', 1, 'Abhinav'),
+(50, 1, 5, 'hey!', '2023-07-31 11:41:19', 1, 'abbas'),
+(53, 5, 1, 'yo', '2023-07-31 11:43:14', 1, 'Abhinav'),
+(56, 5, 1, 'hey again', '2023-07-31 11:52:18', 1, 'abbas'),
+(57, 5, 1, 'can you see', '2023-07-31 11:54:00', 1, 'abbas'),
+(58, 1, 5, 'yes', '2023-07-31 11:54:07', 1, 'Abhinav'),
+(59, 1, 5, 'test', '2023-07-31 11:54:14', 1, 'Abhinav');
 
 -- --------------------------------------------------------
 
@@ -268,7 +316,7 @@ CREATE TABLE `rating` (
 --
 
 INSERT INTO `rating` (`star_id`, `acc_id`, `rating`, `user_id`) VALUES
-(7, 5, 3, 1);
+(7, 5, 5, 1);
 
 -- --------------------------------------------------------
 
@@ -350,6 +398,12 @@ ALTER TABLE `book`
   ADD PRIMARY KEY (`book_id`);
 
 --
+-- Indexes for table `chats`
+--
+ALTER TABLE `chats`
+  ADD PRIMARY KEY (`chatid`);
+
+--
 -- Indexes for table `loc`
 --
 ALTER TABLE `loc`
@@ -393,13 +447,19 @@ ALTER TABLE `accounts`
 -- AUTO_INCREMENT for table `available`
 --
 ALTER TABLE `available`
-  MODIFY `avai_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `avai_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `book`
 --
 ALTER TABLE `book`
-  MODIFY `book_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `book_id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+
+--
+-- AUTO_INCREMENT for table `chats`
+--
+ALTER TABLE `chats`
+  MODIFY `chatid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `loc`
