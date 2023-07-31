@@ -97,7 +97,11 @@
                     while($row_star = $run_allStars->fetch_assoc()){
                         $sumStars += $row_star['rating'];
                     }
-                    $rating = floor($sumStars / $run_allStars->num_rows);
+                    if($run_allStars->num_rows == 0){
+                        $rating = 0;
+                    }else{
+                        $rating = floor($sumStars / $run_allStars->num_rows);
+                    }
                     $checkBooked = "select * from book where user_id=$user_id AND avai_id=$avai_id";
                     $runCheckBooked = $con->query($checkBooked);
                     if($runCheckBooked->num_rows == 0){
