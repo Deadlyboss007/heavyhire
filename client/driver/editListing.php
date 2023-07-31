@@ -121,7 +121,7 @@
         const formData = new FormData(form);
 
         fetch("../../backend/editAvailability.php", {
-            method: "PUT",
+            method: "POST",
             body: formData
         })
         .then(response => response.json())
