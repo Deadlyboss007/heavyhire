@@ -57,7 +57,11 @@
                     while($row_star = $run_allStars->fetch_assoc()){
                         $sumStars += $row_star['rating'];
                     }
-                    $rating = floor($sumStars / $run_allStars->num_rows);
+                    if($run_allStars->num_rows == 0){
+                        $rating = 0;
+                    }else{
+                        $rating = floor($sumStars / $run_allStars->num_rows);
+                    }
                         echo "<div class='custom-shadow h-[100%] rounded-[20px] mb-10'><div class='px-10 py-10 flex'>
                         <img src='../../backend/availableImages/$image' class='w-[350px] h-[200px]' />
                         <div class='ml-5'>

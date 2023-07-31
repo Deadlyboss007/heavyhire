@@ -29,7 +29,7 @@
             <input placeholder="Enter register no" class="border-2 mb-10 py-3 rounded-[15px] px-5 w-[50%]" type="number" name="reg_no">
             <input class="border-2 mb-10 py-3 rounded-[15px] px-5 w-[50%]" type="date" name="exp_date">
         </div>
-        <input class="border-2 mb-10 py-3 rounded-[15px] px-5 w-[50%]" type="number" name="insurance">
+        <input placeholder="Enter insurance.." class="border-2 mb-10 py-3 rounded-[15px] px-5 w-[50%]" type="number" name="insurance">
         <button type="submit" class="bg-teal-800 hover:bg-teal-900 text-white px-4 py-2 rounded-[15px] m-auto w-[30%]">Upload</button>
     </form>
 </body>
