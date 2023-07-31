@@ -1,4 +1,16 @@
-<?php include 'db/db.php'; session_start(); ?>
+<?php 
+    include 'db/db.php'; 
+    session_start(); 
+    if(isset($_GET['from_id']) && isset($_GET['to_id']) && isset($_GET['time'])){
+        $from_id = $_GET['from_id'];
+        $to_id = $_GET['to_id'];
+        $time = $_GET['time'];
+        // echo $from_id . $to_id . $time;
+        $query = "select * from available where '$time' between tfrom and tto and from_id = '$from_id' and to_id = '$to_id'";
+    }else{
+        $query = "select * from available";
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,16 +25,34 @@
     <div class="px-5 py-5 mt-5">
         <div class="custom-shadow h-[100px] rounded-[20px] px-10 py-8">
             <div class="flex justify-between">
-                <input type="text" id="from" class="w-[80%] border-b text-gray-800 focus:outline-none" placeholder="From">
-                <input type="text" id="to" class="w-[80%] border-b text-gray-800 focus:outline-none" placeholder="To">
-                <select type="text" class="w-[80%] border-b text-gray-500">
-                    <option value="" class="">Select your vehicle</option>
-                    <option value="">Truck</option>   
-                    <option value="">Select your vehicle</option>
-                    <option value="">Select your vehicle</option>
-                </select>
-                <input type="time" name="" id="">
-                <button class="rounded text-white bg-green-800 py-2 px-3 hover:bg-green-700">Search</button>
+            <select id="from_id" class="w-[40%] border-b text-gray-800 focus:outline-none" type="text" name="from_id">
+            <option value="">--Select From--</option>
+                <?php
+                    $get_loc = "select * from loc";
+                    $run_loc = $con->query($get_loc);
+                    while($row = $run_loc->fetch_assoc()){
+                        $loc_id = $row['loc_id'];
+                        $loc_name = $row['loc_name'];
+                    
+                        echo "<option value='$loc_id'>$loc_name</option>";
+                    }
+                ?>
+            </select>
+            <select id="to_id" class="w-[40%] border-b text-gray-800 focus:outline-none" type="text" name="to_id">
+                <option value="">--Select To--</option>
+                <?php
+                    $get_loc = "select * from loc";
+                    $run_loc = $con->query($get_loc);
+                    while($row = $run_loc->fetch_assoc()){
+                        $loc_id = $row['loc_id'];
+                        $loc_name = $row['loc_name'];
+                    
+                        echo "<option value='$loc_id'>$loc_name</option>";
+                    }
+                ?>
+            </select>
+                <input id="time" type="time" name="" id="">
+                <button onclick="searchAvailable()" class="rounded text-white bg-green-800 py-2 px-3 hover:bg-green-700">Search</button>
             </div>
         </div>
     </div>
@@ -31,7 +61,6 @@
             <!-- Card -->
             <?php
                 $user_id = $_SESSION['acc_id'];
-                $query = "select * from available";
                 $run = $con->query($query);
                 while($run && $row = $run->fetch_assoc()){
                     $avai_id = $row['avai_id'];
@@ -102,7 +131,7 @@
                                 <button onclick='submitForm()' class='rounded text-white bg-red-800 py-2 px-3 hover:bg-red-700 w-[1005] mb-5'>Book</button>
                             
                             <button onclick='document.getElementById('myForm').submit();' id='contact_button' class='rounded text-white bg-blue-800 py-2 px-3 hover:bg-blue-700 mb-5'>$phone</button>
-                            <button class='rounded text-white bg-black py-2 px-3 hover:bg-slate-700'>Message</button>
+                            <button onclick='messageDriver($acc_id, $user_id)' class='rounded text-white bg-black py-2 px-3 hover:bg-slate-700'>Message</button>
                         </div> 
                         <!-- Hidden form to trigger PHP code on button click -->
                         <form id='myForm' method='POST'>
@@ -129,8 +158,8 @@
     const submitForm = () => {
         const driver_id = document.querySelector("#driver_id").value
         const avai_id = document.querySelector("#avai_id").value
-        const pick_up = document.querySelector("#from").value
-        const drop_off = document.querySelector("#to").value
+        const pick_up = document.querySelector("#from_id").value
+        const drop_off = document.querySelector("#to_id").value
         console.log(driver_id, pick_up, drop_off, localStorage.getItem('acc_id'))
         const data = new FormData();
         data.append('avai_id', avai_id);
@@ -150,6 +179,19 @@
                 console.error(error);
             });
         console.log(data)
+    }
+
+    function messageDriver(driver_id, user_id){
+        localStorage.setItem('selected_user_id', driver_id)
+
+        window.location.href = 'user/chat.php'
+    }
+
+    function searchAvailable(){
+        const pick_up = document.querySelector("#from_id").value
+        const drop_off = document.querySelector("#to_id").value
+        const time = document.querySelector("#time").value
+        window.location.href = `availableVehicles.php?from_id=${pick_up}&to_id=${drop_off}&time=${time}`
     }
 </script>
 

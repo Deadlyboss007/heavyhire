@@ -13,7 +13,7 @@
                 <div class="p-4 md:w-1/3">
                     <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
                         <img class="lg:h-48 md:h-36 w-full object-cover object-center"
-                            src="https://dummyimage.com/720x400" alt="blog">
+                            src="../backend/availableImages/istockphoto-1355096028-170667a.webp" alt="blog">
                         <div class="p-6">
                             <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">rank 1</h2>
                             <h1 class="title-font text-lg font-medium text-gray-900 mb-3">driver 1</h1>
@@ -76,7 +76,7 @@
                 <div class="p-4 md:w-1/3">
                     <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
                         <img class="lg:h-48 md:h-36 w-full object-cover object-center"
-                            src="https://dummyimage.com/721x401" alt="blog">
+                            src="../backend/availableImages/istockphoto-859916128-612x612.jpg" alt="blog">
                         <div class="p-6">
                             <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">rank 2</h2>
                             <h1 class="title-font text-lg font-medium text-gray-900 mb-3">driver 2</h1>
@@ -121,9 +121,6 @@
                             </div>
 
                             <div class="flex justify-between items-center flex-wrap">
-
-
-
                                 <button
                                     class="bg-red-800 hover:bg-red-600 focus:outline-none focus:ring focus:ring-violet-300 rounded-[15px] space-x-4 px-5 py-2">
                                     Book
@@ -141,7 +138,7 @@
                 <div class="p-4 md:w-1/3">
                     <div class="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
                         <img class="lg:h-48 md:h-36 w-full object-cover object-center"
-                            src="https://dummyimage.com/722x402" alt="blog">
+                            src="../backend/availableImages/istockphoto-1284419710-612x612.jpg" alt="blog">
                         <div class="p-6">
                             <h2 class="tracking-widest text-xs title-font font-medium text-gray-400 mb-1">rank 3</h2>
                             <h1 class="title-font text-lg font-medium text-gray-900 mb-3">driver 3</h1>

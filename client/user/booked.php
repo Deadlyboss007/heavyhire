@@ -31,13 +31,14 @@
                 <div class="block">
                     <h1 class="font-bold text-center text-2xl">Previous</h1>
                     <?php
+                        $user_id = $_SESSION['acc_id'];
                         $get_previous = "select * from book where type=0";
                         $run_previous = $con->query($get_previous);
                         while($fetch_previous = $run_previous->fetch_assoc()){
                             $driver_id = $fetch_previous['driver_id'];
                             $pick_up = $fetch_previous['pick_up'];
                             $avai_id = $fetch_previous['avai_id'];
-                            $drop_off = $fetch_previous['drop_off'];
+                            // $drop_off = $fetch_previous['drop_off'];
 
 
                             $get_driver = "select * from accounts where acc_id=$driver_id";
@@ -57,6 +58,24 @@
                             $fetch_avai = $run_avai->fetch_assoc();
                             $image = $fetch_avai['image'];
 
+                            $from_id = $fetch_avai['from_id'];
+                            $to_id = $fetch_avai['to_id'];
+                            $q_from = "select * from loc where loc_id = $from_id";
+                            $q_to = "select * from loc where loc_id = $to_id";
+                            $run_from = $con->query($q_from);
+                            $run_to = $con->query($q_to);
+                            $fetch_from = $run_from->fetch_assoc();
+                            $fetch_to = $run_to->fetch_assoc();
+                            $pick_up = $fetch_from['loc_name'];
+                            $drop_off = $fetch_to['loc_name'];
+
+                            $q_rating = "select * from rating where user_id = $user_id and acc_id = $driver_id";
+                            $run_rating = $con->query($q_rating);
+                            $fetch_rating = $run_rating->fetch_assoc();
+                            $stars = 0;
+                            if($fetch_rating !== null){
+                                $stars = $fetch_rating['rating'];
+                            }
                             echo "
                             <div class='max-w-sm mt-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
                                 <a href='#'>
@@ -65,7 +84,19 @@
                                 <div class='p-5'>
                                     <a href='#'>
                                         <h5 class='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>$brand $model</h5>
-                                    </a>
+                                    </a>";
+                                    if($fetch_rating !== null){
+                                        $id = 1;
+                                        for($i=1; $i<=$stars; $i++){
+                                            echo "<i onclick='rateDriver($driver_id, $id)' class='fa-solid fa-star text-yellow-500 cursor-pointer mr-2'></i>";
+                                            $id += 1;
+                                        }
+                                        for($i=1;$i<=5-$stars; $i++){
+                                            echo "<i onclick='rateDriver($driver_id, $id)' class='fa-regular fa-star text-yellow-500 cursor-pointer mr-2'></i>";
+                                            $id += 1;
+                                        }
+                                    }
+                                    echo "
                                     <ul class='mb-3'>
                                         <li class='font-normal text-gray-700 dark:text-gray-400'>Driver: $name</li>  
                                         <li class='font-normal text-gray-700 dark:text-gray-400'>From: $pick_up</li>  
@@ -86,8 +117,8 @@
                             $book_id = $fetch_previous['book_id'];
                             $avai_id = $fetch_previous['avai_id'];
                             $driver_id = $fetch_previous['driver_id'];
-                            $pick_up = $fetch_previous['pick_up'];
-                            $drop_off = $fetch_previous['drop_off'];
+                            // $pick_up = $fetch_previous['pick_up'];
+                            // $drop_off = $fetch_previous['drop_off'];
 
 
                             $get_driver = "select * from accounts where acc_id=$driver_id";
@@ -106,6 +137,17 @@
                             $run_avai = $con->query($get_avai);
                             $fetch_avai = $run_avai->fetch_assoc();
                             $image = $fetch_avai['image'];
+
+                            $from_id = $fetch_avai['from_id'];
+                            $to_id = $fetch_avai['to_id'];
+                            $q_from = "select * from loc where loc_id = $from_id";
+                            $q_to = "select * from loc where loc_id = $to_id";
+                            $run_from = $con->query($q_from);
+                            $run_to = $con->query($q_to);
+                            $fetch_from = $run_from->fetch_assoc();
+                            $fetch_to = $run_to->fetch_assoc();
+                            $pick_up = $fetch_from['loc_name'];
+                            $drop_off = $fetch_to['loc_name'];
                             echo "
                             <div class='max-w-sm mt-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
                                 <a href='#'>
@@ -123,6 +165,9 @@
                                     <button onclick='cancelBooking($book_id)'
                                     class='inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800'>
                                     cancel</button>
+                                    <button onclick='messageDriver($driver_id)'
+                                    class='inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
+                                    message</button>
                                 </div>
                             </div>
                             ";
@@ -137,7 +182,7 @@
                         while($fetch_previous = $run_previous->fetch_assoc()){
                             $driver_id = $fetch_previous['driver_id'];
                             $pick_up = $fetch_previous['pick_up'];
-                            $drop_off = $fetch_previous['drop_off'];
+                            // $drop_off = $fetch_previous['drop_off'];
                             $avai_id = $fetch_previous['avai_id'];
 
 
@@ -157,6 +202,17 @@
                             $run_avai = $con->query($get_avai);
                             $fetch_avai = $run_avai->fetch_assoc();
                             $image = $fetch_avai['image'];
+
+                            $from_id = $fetch_avai['from_id'];
+                            $to_id = $fetch_avai['to_id'];
+                            $q_from = "select * from loc where loc_id = $from_id";
+                            $q_to = "select * from loc where loc_id = $to_id";
+                            $run_from = $con->query($q_from);
+                            $run_to = $con->query($q_to);
+                            $fetch_from = $run_from->fetch_assoc();
+                            $fetch_to = $run_to->fetch_assoc();
+                            $pick_up = $fetch_from['loc_name'];
+                            $drop_off = $fetch_to['loc_name'];
 
                             echo "
                             <div class='max-w-sm mt-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700'>
@@ -205,6 +261,31 @@
         };
 
         xhr.send();
+    }
+
+    function rateDriver(driver_id, rate){
+        console.log(driver_id, rate)
+        const data = new FormData();
+        data.append('acc_id', driver_id);
+        data.append('rating', rate);
+        data.append('user_id', localStorage.getItem('acc_id'));
+        fetch("../../backend/rate.php", {
+            method: "POST",
+            body: data
+        })
+        .then(response => response.json())
+            .then(data => {
+                window.location.reload()
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
+    }
+    function messageDriver(driver_id){
+        localStorage.setItem('selected_user_id', driver_id)
+
+        window.location.href = 'chat.php'
     }
 </script>
 </html>

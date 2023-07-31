@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     
     move_uploaded_file($file['tmp_name'], "availableImages/$image");
 
-    $insert = "insert into available(v_id, acc_id, loc, from_id, to_id, tfrom, tto, phone, image) values('$v_id', '$acc_id', '$from_id', '$to_id', '$tfrom', '$tto', '$phone', '$image')";
+    $insert = "insert into available(v_id, acc_id, from_id, to_id, tfrom, tto, phone, image) values('$v_id', '$acc_id', '$from_id', '$to_id', '$tfrom', '$tto', '$phone', '$image')";
     $run = mysqli_query($con, $insert);
     $response = [
         "message" => "Form submitted successfully",

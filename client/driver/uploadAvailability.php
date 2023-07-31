@@ -90,7 +90,7 @@
         })
         .then(response => response.json())
             .then(data => {
-                window.location.replace('/heavyhire/client/driver/driverDashboard.php')
+                window.location.replace('/heavyhire/client/driver/viewListings.php')
                 console.log(data)
             })
             .catch(error => {

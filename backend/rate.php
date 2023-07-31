@@ -5,8 +5,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $rating = $_POST['rating'];
     $user_id = $_POST['user_id'];
 
-    $insert = "insert into rating(acc_id, rating, user_id) values('$acc_id', '$rating', '$user_id')";
-    $run = mysqli_query($con, $insert);
+    $check_query = "SELECT * FROM rating WHERE user_id = '$user_id' and acc_id = '$acc_id'";
+    $result = $con->query($check_query);
+
+    if ($result->num_rows > 0) {
+        $query = "UPDATE rating SET rating = '$rating' where user_id = $user_id and acc_id = $acc_id";
+    } else {
+        $query = "INSERT INTO rating (acc_id, rating, user_id) VALUES ('$acc_id', '$rating', '$user_id')";
+    }
+    $run = mysqli_query($con, $query);
     $response = [
         "message" => "Rated successfully",
     ];
