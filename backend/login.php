@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 $type_id = $row['type_id'];
                 $acc_id = $row['acc_id'];
                 $response = [
+                    "success" => true,
                     "message" => "Form submitted successfully",
                     "email" => $email,
                     "name" => $name_db,
@@ -25,7 +26,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 header("Content-Type: application/json");
                 echo json_encode($response);
             }else{
-                $response->getBody()->write("<script>console.log('You entered wrong email/password');</script>");
+                $response = [
+                    "success" => false,
+                    "message" => "Form not submitted",
+                  ];
+              
+                  header("Content-Type: application/json");
+                  echo json_encode($response);
+                  exit();
+                // $response->getBody()->write("<script>console.log('You entered wrong email/password');</script>");
             }
         }
     }

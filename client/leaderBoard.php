@@ -28,6 +28,7 @@
                         $r_acc = $con->query($q_acc);
                         $f_acc = $r_acc->fetch_assoc();
                         $name = $f_acc['name'];
+                        $phone = $f_acc['phone'];
 
                         $q_avai = "select * from available where acc_id = '$acc_id'";
                         $r_avai = $con->query($q_avai);
@@ -41,7 +42,7 @@
                         $brand = $vehicle_data['brand'];
                         $model = $vehicle_data['model'];
 
-                        echo "<div class='p-4 md:w-1/3'>
+                        echo "<div class='p-4 md:w-1/2'>
                             <div class='h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden'>
                                 <img class='lg:h-48 md:h-36 w-full object-cover object-center'
                                     src='../backend/availableImages/istockphoto-1355096028-170667a.webp' alt='blog'>
@@ -96,8 +97,9 @@
                                         </button>
                                         <button
                                             class='bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring focus:ring-violet-300  rounded-[15px] space-x-4 px-5 py-2'>
-                                            contact
+                                            $phone
                                         </button><button
+                                            onclick='messageDriver($acc_id, \"" . htmlspecialchars($name, ENT_QUOTES) . "\")'
                                             class='bg-black hover:bg-slate-700 focus:outline-none focus:ring focus:ring-violet-300 rounded-[15px] space-x-4 px-5 py-2'>
                                             message
                                         </button>
@@ -235,5 +237,12 @@
     </section>
     <?php include 'footer.php' ?>
 </body>
+<script>
+    function messageDriver(driver_id, driver_name){
+        localStorage.setItem('selected_user_id', driver_id)
+        localStorage.setItem('selected_user_name', driver_name)
 
+        window.location.href = 'user/chat.php'
+    }
+</script>
 </html>
