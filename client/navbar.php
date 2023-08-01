@@ -2,14 +2,14 @@
 <header class="bg-teal-950">
         <div class="container">
             <nav>
-                <div>
+                <a href="index.php">
                     <img src="images/logo.png" width="100px" alt="">
                     <ul class="nav-links">
                         <!-- <li><a href="#">Company</a></li>
                         <li><a href="#">Safety</a></li>
                         <li><a href="#">Help</a></li> -->
                     </ul>
-                </div>
+                </a>
                 <div id="not_logged">
                     <ul id="nav-links" class="nav-links">
                         <li><a href="login.php" class="text-white">Log in</a></li>

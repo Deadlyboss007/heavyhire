@@ -67,6 +67,11 @@
                     $Ufrom = $row['tfrom'];
                     $acc_id = $row['acc_id'];
 
+                    $q_acc = "select * from accounts where acc_id = '$acc_id'";
+                    $r_acc = $con->query($q_acc);
+                    $f_acc = $r_acc->fetch_assoc();
+                    $name = $f_acc['name'];
+
                     $from_id = $row['from_id'];
                     $to_id = $row['to_id'];
                     $q_from = "select * from loc where loc_id = $from_id";
@@ -102,7 +107,7 @@
                     }else{
                         $rating = floor($sumStars / $run_allStars->num_rows);
                     }
-                    $checkBooked = "select * from book where user_id=$user_id AND avai_id=$avai_id";
+                    $checkBooked = "select * from book where user_id=$user_id AND avai_id=$avai_id AND type = 1";
                     $runCheckBooked = $con->query($checkBooked);
                     if($runCheckBooked->num_rows == 0){
                         echo "<div id='$avai_id' class='px-10 py-10 flex'>
@@ -135,7 +140,7 @@
                                 <button onclick='submitForm()' class='rounded text-white bg-red-800 py-2 px-3 hover:bg-red-700 w-[1005] mb-5'>Book</button>
                             
                             <button onclick='document.getElementById('myForm').submit();' id='contact_button' class='rounded text-white bg-blue-800 py-2 px-3 hover:bg-blue-700 mb-5'>$phone</button>
-                            <button onclick='messageDriver($acc_id, $user_id)' class='rounded text-white bg-black py-2 px-3 hover:bg-slate-700'>Message</button>
+                            <button onclick='messageDriver($acc_id, $user_id, \"" . htmlspecialchars($name, ENT_QUOTES) . "\")' class='rounded text-white bg-black py-2 px-3 hover:bg-slate-700'>Message</button>
                         </div> 
                         <!-- Hidden form to trigger PHP code on button click -->
                         <form id='myForm' method='POST'>
@@ -185,8 +190,9 @@
         console.log(data)
     }
 
-    function messageDriver(driver_id, user_id){
+    function messageDriver(driver_id, user_id, name){
         localStorage.setItem('selected_user_id', driver_id)
+        localStorage.setItem('selected_user_name', name)
 
         window.location.href = 'user/chat.php'
     }

@@ -31,7 +31,7 @@
         <div class="container1">
           <!-- <img src="https://img.freepik.com/premium-vector/male-profile-flat-blue-simple-icon-with-long-shadowxa_159242-10092.jpg?w=740" class="msgimg w-[50px] align-middle rounded-[80%]" /> -->
           <div class="active">
-            <p>Abhinav C V</p>
+            <p id="chat-name"></p>
           </div>
         </div>
       </div>
@@ -188,6 +188,7 @@
     
 </script>
 <script>
+    document.getElementById("chat-name").innerHTML = localStorage.getItem('selected_user_name')
     // Function to send a message using AJAX
     function sendMessage() {
         const message = messageInput.value.trim();

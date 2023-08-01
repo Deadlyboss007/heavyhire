@@ -54,11 +54,6 @@
           <input class="input border rounded-[10px] w-full px-5 py-2 text-xl text-gray-500" type="email" value="<?php echo $email; ?>">
        </div>
 
-       <div class="grid grid-cols-4 gap-4 mb-4">
-         <label for="" class="text-xl font-bold">Address</label>
-         <textarea class="input border brounded-[10px] w-full px-5 py-8 text-xl" type="text" value="Your address"></textarea>
-       </div>
-
        <div class="grid grid-cols-10 gap-4 mb-4">
          <button class="bg-teal-950 text-white hover:bg-teal-800 py-2 px-4 rounded font-semibold">Save</button>
        </div>

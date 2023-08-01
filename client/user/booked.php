@@ -85,16 +85,14 @@
                                     <a href='#'>
                                         <h5 class='mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white'>$brand $model</h5>
                                     </a>";
-                                    if($fetch_rating !== null){
-                                        $id = 1;
-                                        for($i=1; $i<=$stars; $i++){
-                                            echo "<i onclick='rateDriver($driver_id, $id)' class='fa-solid fa-star text-yellow-500 cursor-pointer mr-2'></i>";
-                                            $id += 1;
-                                        }
-                                        for($i=1;$i<=5-$stars; $i++){
-                                            echo "<i onclick='rateDriver($driver_id, $id)' class='fa-regular fa-star text-yellow-500 cursor-pointer mr-2'></i>";
-                                            $id += 1;
-                                        }
+                                    $id = 1;
+                                    for($i=1; $i<=$stars; $i++){
+                                        echo "<i onclick='rateDriver($driver_id, $id)' class='fa-solid fa-star text-yellow-500 cursor-pointer mr-2'></i>";
+                                        $id += 1;
+                                    }
+                                    for($i=1;$i<=5-$stars; $i++){
+                                        echo "<i onclick='rateDriver($driver_id, $id)' class='fa-regular fa-star text-yellow-500 cursor-pointer mr-2'></i>";
+                                        $id += 1;
                                     }
                                     echo "
                                     <ul class='mb-3'>
@@ -165,7 +163,7 @@
                                     <button onclick='cancelBooking($book_id)'
                                     class='inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800'>
                                     cancel</button>
-                                    <button onclick='messageDriver($driver_id)'
+                                    <button onclick='messageDriver($driver_id, \"" . htmlspecialchars($name, ENT_QUOTES) . "\")'
                                     class='inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-500 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800'>
                                     message</button>
                                 </div>
@@ -282,8 +280,9 @@
             });
 
     }
-    function messageDriver(driver_id){
+    function messageDriver(driver_id, driver_name){
         localStorage.setItem('selected_user_id', driver_id)
+        localStorage.setItem('selected_user_name', driver_name)
 
         window.location.href = 'chat.php'
     }
